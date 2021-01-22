@@ -2,15 +2,14 @@
 {
     partial class Form1
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
+       
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
+
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+
+        #region MyRegion
+
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -19,7 +18,7 @@
             }
             base.Dispose(disposing);
         }
-
+        #endregion
         #region Windows Form Designer generated code
 
         /// <summary>
@@ -178,6 +177,7 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(300, 450);
             this.panel1.TabIndex = 15;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // Form1
             // 
@@ -200,6 +200,9 @@
 
         #endregion
 
+
+        #region MyRegion
+
         private System.Windows.Forms.TextBox txt_kull;
         private System.Windows.Forms.TextBox txt_parola;
         private System.Windows.Forms.Button btn_giris;
@@ -211,6 +214,11 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.PictureBox pictureBox6;
         private System.Windows.Forms.Panel panel1;
+
+        #endregion
+
+
+
     }
 }
 

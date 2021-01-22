@@ -13,6 +13,8 @@ namespace istakipProgrami
 {
     public partial class frm_projeYarat : Form
     {
+        #region bağlantı tanımlama vs.
+
         public frm_projeYarat()
         {
             InitializeComponent();
@@ -28,7 +30,9 @@ namespace istakipProgrami
         private Proje _proje;
 
         VTBaglan vt = new VTBaglan();
+        #endregion
 
+        #region proje yarat butonu işlemleri
         private void btn_yarat_Click(object sender, EventArgs e)
         {
             bool kontrol = true;
@@ -69,7 +73,9 @@ namespace istakipProgrami
                 MessageBox.Show("Lütfen boşlukları doldurunuz");
             }
         }
+        #endregion
 
+        #region Proje Yaratma Metodu
 
         private void projeYatar()
         {
@@ -94,6 +100,11 @@ namespace istakipProgrami
         }
 
 
+
+        #endregion
+
+        #region Proje Guncelleme Metodu
+
         public void projeGuncelle()
         {
             SqlCommand c = new SqlCommand("update tb_projeler set projeismi=@p1, musteri=@p2, bilgi=@p3 where ID=@p4", vt.bagla());
@@ -104,6 +115,12 @@ namespace istakipProgrami
             c.ExecuteNonQuery();
             vt.bagla().Close();
         }
+
+
+
+        #endregion
+
+        #region formun load işlemleri
 
         private void frm_projeYarat_Load(object sender, EventArgs e)
         {
@@ -116,6 +133,9 @@ namespace istakipProgrami
         }
 
 
+
+
+        #endregion
 
     }
 }

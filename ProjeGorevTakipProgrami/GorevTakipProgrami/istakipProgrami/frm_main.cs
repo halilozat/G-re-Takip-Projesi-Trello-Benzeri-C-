@@ -18,27 +18,56 @@ namespace istakipProgrami
             InitializeComponent();
         }
 
+        #region bağlantı ve listeleme
+
+        
+
+           
         VTBaglan vt = new VTBaglan();
         List<Proje> _projelerim = new List<Proje>();
+        #endregion
 
+        #region exit
+
+        
+
+        
         private void frm_main_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
         }
+        #endregion
 
+        #region load
+
+        
+
+       
         private void frm_main_Load(object sender, EventArgs e)
         {
             lbl_kullanici.Text = Kullanici._login.Adi + " " + Kullanici._login.Soyadi;
             projelerim();
         }
+        #endregion
 
+        #region proje yarat
+
+        
+
+       
         private void btn_projeYarat_Click(object sender, EventArgs e)
         {
             frm_projeYarat fpy = new frm_projeYarat();
             fpy.ShowDialog();
             projelerim();
         }
+        #endregion
 
+        #region MyRegion
+
+        
+
+        
         private void projelerim()
         {
             _projelerim.Clear();
@@ -100,8 +129,13 @@ namespace istakipProgrami
             }
         }
 
+        #endregion
 
+        #region proje listeleme combobox
 
+        
+
+        
         private void cmb_projeler_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cmb_projeler.SelectedItem != null)
@@ -113,8 +147,13 @@ namespace istakipProgrami
             sureHesapla();
             
         }
+        #endregion
 
+        #region görevleri listele
 
+        
+
+        
         private void gorevleriListele()
         {
             list_todo.Items.Clear();
@@ -133,7 +172,13 @@ namespace istakipProgrami
                 }
             }   
         }
+        #endregion
 
+        #region gorev ekle
+
+        
+
+        
         private void btn_gorevEkle_Click(object sender, EventArgs e)
         {
             frm_gorev fg = new frm_gorev(_projelerim[cmb_projeler.SelectedIndex]);
@@ -142,7 +187,13 @@ namespace istakipProgrami
             projelerim();
             cmb_projeler.SelectedIndex = i;
         }
+        #endregion
 
+        #region gorevli ekle
+
+        
+
+        
         private void btn_gorevliEkle_Click(object sender, EventArgs e)
         {
             frm_gorevli fgl = new frm_gorevli(_projelerim[cmb_projeler.SelectedIndex]);
@@ -151,8 +202,13 @@ namespace istakipProgrami
             projelerim();
             cmb_projeler.SelectedIndex = i;
         }
+        #endregion
 
+        #region gorev goster
 
+        
+
+        
         private void gorevGoruntule(string baslik)
         {
             Gorev gr = new Gorev();
@@ -167,7 +223,7 @@ namespace istakipProgrami
             frm_gorev fg = new frm_gorev(gr, _projelerim[cmb_projeler.SelectedIndex]);
             fg.ShowDialog();
         }
-
+        #endregion
 
         #region Yapılacaktan yapılıyora taşıma
         bool surukleYapilacak = false;
@@ -232,7 +288,6 @@ namespace istakipProgrami
             }
         }
         #endregion
-
 
         #region Yapılacaktan tamamlanana taşıma
         bool surukleYapiliyor = false;
@@ -301,7 +356,7 @@ namespace istakipProgrami
             gorevGoruntule(list_done.SelectedItem.ToString());
         }
 
-
+        #region durum degistir
         private void durumDegistir(Gorev gorev)
         {
             SqlCommand c = new SqlCommand("insert into tb_gorevHareket (gorevId, durumId, kullaniciId, tarih) values (@p1, @p2, @p3, @p4)", vt.bagla());
@@ -324,6 +379,10 @@ namespace istakipProgrami
             c.ExecuteNonQuery();
             vt.bagla().Close();
         }
+        #endregion
+
+        #region süre hesaplama işlemi
+
 
 
 
@@ -347,7 +406,9 @@ namespace istakipProgrami
 
 
         }
+        #endregion
 
+        #region tahmini süre hesapla
         private int OrtalamaHesapla(int sorumlu)
         {
             int kisiOrtalamasi = 0;
@@ -361,8 +422,9 @@ namespace istakipProgrami
             vt.bagla().Close();
             return kisiOrtalamasi;
         }
+        #endregion
 
-
+        #region geçen süre hesapla
         private int GecenSure(int gorevId, int durum = 1)
         {
             int gecenSure = 0;
@@ -385,11 +447,15 @@ namespace istakipProgrami
             return gecenSure;
         }
 
+        #endregion
+
         private void btn_hareket_Click(object sender, EventArgs e)
         {
             frm_gorevHaareketleri fgh = new frm_gorevHaareketleri(_projelerim[cmb_projeler.SelectedIndex].Id);
             fgh.ShowDialog();
         }
+
+        #region ...
 
         private void list_todo_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -400,5 +466,13 @@ namespace istakipProgrami
         {
 
         }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        #endregion
+
     }
 }

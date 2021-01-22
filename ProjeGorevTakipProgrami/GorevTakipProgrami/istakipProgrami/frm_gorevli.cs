@@ -13,15 +13,26 @@ namespace istakipProgrami
 {
     public partial class frm_gorevli : Form
     {
+        #region Gorevliler
+
         public frm_gorevli(Proje proje)
         {
             _proje = proje;
             InitializeComponent();
         }
 
+        #endregion
+
+        #region tüm kullanıcıları çek
+
         Proje _proje;
         List<Kullanici> tumKullanicilar = new List<Kullanici>();
         VTBaglan vt = new VTBaglan();
+
+        #endregion
+
+        #region load işlemleri
+
 
         private void frm_gorevli_Load(object sender, EventArgs e)
         {
@@ -46,28 +57,34 @@ namespace istakipProgrami
                 cb.Text = item.KullaniciAdi;
                 cb.Top = top;
                 cb.Left = left;
-                cb.Checked = projeSorumlusu(item.Id);                
+                cb.Checked = projeSorumlusu(item.Id);
                 panel1.Controls.Add(cb);
                 top += 25;
-            }            
+            }
         }
 
+        #endregion
 
+        #region proje sorumlusu
 
         private bool projeSorumlusu(int id)
         {
             bool onay = false;
-            SqlCommand c = new SqlCommand("select * from tb_projeSorumlu where projeId = @p1 and kullaniciId = @p2",vt.bagla());
+            SqlCommand c = new SqlCommand("select * from tb_projeSorumlu where projeId = @p1 and kullaniciId = @p2", vt.bagla());
             c.Parameters.AddWithValue("@p1", _proje.Id);
             c.Parameters.AddWithValue("@p2", id);
             SqlDataReader dr = c.ExecuteReader();
-            if(dr.Read())
+            if (dr.Read())
             {
                 onay = true;
             }
 
             return onay;
         }
+
+        #endregion
+
+        #region Kaydet
 
         private void btn_kaydet_Click(object sender, EventArgs e)
         {
@@ -93,5 +110,18 @@ namespace istakipProgrami
             MessageBox.Show("Seçili kişiler projeye dahil edildi");
             this.Close();
         }
+
+        #endregion
+
+        #region ...
+
+        
+
+        
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+        #endregion
     }
 }

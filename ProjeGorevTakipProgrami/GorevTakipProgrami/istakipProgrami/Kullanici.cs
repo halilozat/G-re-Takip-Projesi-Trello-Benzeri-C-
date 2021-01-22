@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace istakipProgrami
 {
-    public class Kullanici
+    public class Kullanici  //Kullanici class'i && deger tanimlamalari
     {
         public static Kullanici _login;
 

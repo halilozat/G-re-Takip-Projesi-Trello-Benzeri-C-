@@ -13,6 +13,9 @@ namespace istakipProgrami
 {
     public partial class frm_gorev : Form
     {
+
+        #region veri tabanıyla gelenler
+
         public frm_gorev(Proje proje)
         {
             _proje = proje;
@@ -30,6 +33,9 @@ namespace istakipProgrami
         private Gorev _gorev;
         VTBaglan vt = new VTBaglan();
 
+        #endregion
+
+        #region Gorevliler
 
         private void gorevliler()
         {
@@ -39,11 +45,15 @@ namespace istakipProgrami
             }
         }
 
+        #endregion
+
+        #region load İşlemleri
+
         private void frm_gorev_Load(object sender, EventArgs e)
         {
             gorevliler();
 
-            if(_gorev != null)
+            if (_gorev != null)
             {
                 txt_baslik.Text = _gorev.Baslik;
                 txt_aciklama.Text = _gorev.Aciklama;
@@ -68,11 +78,15 @@ namespace istakipProgrami
             }
         }
 
+        #endregion
+
+        #region Kaydet
+
         private void btn_kaydet_Click(object sender, EventArgs e)
         {
-            if(!String.IsNullOrEmpty(txt_baslik.Text) && cmb_gorevli.SelectedIndex >= 0)
+            if (!String.IsNullOrEmpty(txt_baslik.Text) && cmb_gorevli.SelectedIndex >= 0)
             {
-                if(_gorev == null)
+                if (_gorev == null)
                 {
                     Gorev gr = new Gorev();
                     gr.Baslik = txt_baslik.Text;
@@ -81,7 +95,7 @@ namespace istakipProgrami
                     gr.Gorevli = _proje.Sorumlu[cmb_gorevli.SelectedIndex].Id;
                     gorevEkle(gr, _proje.Id);
                 }
-                this.Close();                
+                this.Close();
             }
             else
             {
@@ -89,7 +103,9 @@ namespace istakipProgrami
             }
         }
 
+        #endregion
 
+        #region GorevEkle
         private void gorevEkle(Gorev gorevv, int projeId)
         {
             if (tekrarKayit(projeId, gorevv.Baslik))
@@ -110,25 +126,21 @@ namespace istakipProgrami
                     gorevID = Convert.ToInt32(dr[0]);
                 }
                 vt.bagla().Close();
-                                
+
                 c = new SqlCommand("insert into tb_gorevHareket (gorevId, durumId, kullaniciId, tarih) values (@p1, @p2, @p3, @p4)", vt.bagla());
                 c.Parameters.AddWithValue("@p1", gorevID);
                 c.Parameters.AddWithValue("@p2", 1);
                 c.Parameters.AddWithValue("@p3", Kullanici._login.Id);
                 c.Parameters.AddWithValue("@p4", DateTime.Now);
                 c.ExecuteNonQuery();
-                vt.bagla().Close(); 
+                vt.bagla().Close();
             }
         }
 
 
+        #endregion
 
-
-
-
-
-
-
+        #region TekrarKayit
 
         private bool tekrarKayit(int projeId, string baslik, bool yeni = true, int gorevId = 0)
         {
@@ -138,7 +150,7 @@ namespace istakipProgrami
                 sorgu = "select * from tb_gorevler where projeId = @p1 and baslik = @p2";
             else
                 sorgu = "select * from tb_gorevler where projeId = @p1 and baslik = @p2 and ID <> @p3";
-            SqlCommand c = new SqlCommand(sorgu, vt.bagla());            
+            SqlCommand c = new SqlCommand(sorgu, vt.bagla());
             c.Parameters.AddWithValue("@p1", projeId);
             c.Parameters.AddWithValue("@p2", baslik);
             c.Parameters.AddWithValue("@p3", gorevId);
@@ -150,6 +162,11 @@ namespace istakipProgrami
             vt.bagla().Close();
             return onay;
         }
+
+        #endregion
+
+
+
 
 
 

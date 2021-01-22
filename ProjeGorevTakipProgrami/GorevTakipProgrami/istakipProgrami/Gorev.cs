@@ -8,6 +8,9 @@ namespace istakipProgrami
 {
     public  class Gorev
     {
+
+        //görev class'i && deger tanimlamalari
+
         private int _id;
         private string _baslik;
         private string _aciklama;

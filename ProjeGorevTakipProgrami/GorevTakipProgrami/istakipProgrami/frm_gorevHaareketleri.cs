@@ -21,6 +21,11 @@ namespace istakipProgrami
 
         int _projeId;
 
+        #region Veri Tabanından Kullanıcı Çekme İşlemleri
+
+        
+
+        
         private void frm_gorevHaareketleri_Load(object sender, EventArgs e)
         {
             VTBaglan vt = new VTBaglan();
@@ -29,6 +34,11 @@ namespace istakipProgrami
             DataTable dt = new DataTable();
             da.Fill(dt);
             dataGridView1.DataSource = dt;
+        }
+        #endregion
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace istakipProgrami
 {
-    public class Proje
+    public class Proje //Proje class'i && deger tanimlamalari
     {
         private int _id;
         private string _projeisim;

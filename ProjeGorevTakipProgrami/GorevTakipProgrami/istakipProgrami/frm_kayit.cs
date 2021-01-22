@@ -18,9 +18,18 @@ namespace istakipProgrami
             InitializeComponent();
         }
 
+        #region veri tabanı bağlantısı
+        
         VTBaglan vt = new VTBaglan(); //bağlantı
 
-        
+
+        #endregion
+
+        #region kaydet
+
+
+
+
         private void btn_kaydet_Click(object sender, EventArgs e)
         {
             bool kontrol = true;
@@ -63,7 +72,13 @@ namespace istakipProgrami
                 }
             }
         }
+        #endregion
 
+        #region kayit ol
+
+
+
+       
 
         private void kayitOl(Kullanici _kullanici)
         {
@@ -78,8 +93,13 @@ namespace istakipProgrami
                 vt.bagla().Close();
             }
         }
+        #endregion
+
+        #region tekrar kayit
 
 
+
+       
         private bool tekrarKayit(string kullanciAdi)
         {
             bool onay = true;
@@ -93,6 +113,12 @@ namespace istakipProgrami
             vt.bagla().Close();
             return onay;
         }
+        #endregion
+
+        #region ....
+
+
+
 
         private void label6_Click(object sender, EventArgs e)
         {
@@ -102,5 +128,6 @@ namespace istakipProgrami
         {
 
         }
+        #endregion
     }
 }

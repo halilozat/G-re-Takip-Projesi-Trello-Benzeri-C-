@@ -7,8 +7,11 @@ using System.Data.SqlClient;
 
 namespace istakipProgrami
 {
-    class VTBaglan
+    class VTBaglan //SQL Connection bağlantı işlemleri...
     {
+
+
+
         public SqlConnection bagla()
         {
             SqlConnection bagla = new SqlConnection(@"Data Source=DESKTOP-2GLKQT8;Initial Catalog=projetakip;Integrated Security=True");

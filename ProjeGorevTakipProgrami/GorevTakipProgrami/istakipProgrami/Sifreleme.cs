@@ -8,7 +8,7 @@ using System.IO;
 
 namespace istakipProgrami
 {
-    class Sifreleme
+    class Sifreleme //Şifreleme class'i && gerekli metodlar. (Veri tabanına şifreyi hashleyerek göndermek için.)
     {
         public static byte[] StringToByte(string deger)
         {
@@ -26,7 +26,11 @@ namespace istakipProgrami
             return arrayByte;
         }
 
+        #region şifreyi hashleme metodu
 
+        
+
+       
         public string RijndaelSifrele(string strGiris)
         {
             string sonuc = "";
@@ -54,28 +58,6 @@ namespace istakipProgrami
             }
             return sonuc;
         }
-
-        //public string RijndaelCoz(string strGiris)
-        //{
-        //    string strSonuc = "";
-        //    if (strGiris == "" || strGiris == null)
-        //    {
-        //        throw new ArgumentNullException("veri yok.");
-        //    }
-        //    else
-        //    {
-        //        byte[] aryKey = Byte8("uesf8CAs");
-        //        byte[] aryIV = Byte8("8+BmFLXOvsImjCTE");
-        //        RijndaelManaged cp = new RijndaelManaged();
-        //        MemoryStream ms = new MemoryStream(Convert.FromBase64String(strGiris));
-        //        CryptoStream cs = new CryptoStream(ms, cp.CreateDecryptor(aryKey, aryIV), CryptoStreamMode.Read);
-        //        StreamReader reader = new StreamReader(cs);
-        //        strSonuc = reader.ReadToEnd();
-        //        reader.Dispose();
-        //        cs.Dispose();
-        //        ms.Dispose();
-        //    }
-        //    return strSonuc;
-        //}
+        #endregion
     }
 }

@@ -93,6 +93,11 @@ namespace istakipProgrami
             txt_parola.UseSystemPasswordChar = false;
         }
         #endregion
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 
 }
